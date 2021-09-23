@@ -3,42 +3,50 @@ using UnityEngine;
 
 namespace Inner_Miner.Scripts
 {
+    /// <summary>
+    /// Handles the Selection and Deselection of objects
+    /// </summary>
     public class SelectionManager : MonoSingleton<SelectionManager>
     {
         [SerializeField] private string selectableTag = "Selectable";
         [SerializeField] private Material highlightMaterial;
 
         private Material _originalMaterial;
-        private GameObject _selectedObject;
-        public void ClickAction(Vector2 pos)
+        public GameObject selectedObject { get; private set; }
+
+        /// <summary>
+        /// highlights the object on the mouse cursor, and remove 
+        /// </summary>
+        /// <param name="pos"></param>
+        public void AimAction(Vector2 pos)
         {
             //get the object clicked
             var pointedObject = getObjectOnMousePosition(pos);
             //ignore if new object same as currently selected object or nothing pointed
-            if ((_selectedObject == pointedObject) || pointedObject == null) return;
+            if ((selectedObject == pointedObject) || pointedObject == null) return;
 
             Debug.Log($"pointedObject.name {pointedObject.name}");
 
             //deselect
             Renderer r;
-            if (_selectedObject != null && _originalMaterial != null)
+            if (selectedObject != null && _originalMaterial != null)
             {
-                r = _selectedObject.GetComponent<Renderer>();
+                r = selectedObject.GetComponent<Renderer>();
                 r.material = _originalMaterial;
-                _selectedObject = null;
+                selectedObject = null;
             }
             
             //select/highlight
             //store original material
-            _selectedObject = pointedObject;
-            r = _selectedObject.GetComponent<Renderer>();
+            selectedObject = pointedObject;
+            r = selectedObject.GetComponent<Renderer>();
             _originalMaterial = r.material;
-            //highlight the clicked object
+            //highlight the pointed object
             r.material = highlightMaterial;
         }
-
+        
         /// <summary>
-        /// get the clicked object
+        /// Get the pointed object
         /// </summary>
         /// <returns>GameObject</returns>
         public GameObject getObjectOnMousePosition(Vector2 pos)

@@ -28,24 +28,40 @@ namespace Inner_Miner.Scripts
         // Start is called before the first frame update
         void Start()
         {
+            //listen to input action map mouse, action click events
             _cursorControl.Mouse.Click.started += context => startedClick();
             _cursorControl.Mouse.Click.performed += context => performedClick();
+            //listen to input action map mouse, action aim events
+            _cursorControl.Mouse.Aim.started += context => startedAim();
+            _cursorControl.Mouse.Aim.performed += context => performedAim();
             setCursor(cursor);
         }
 
         private void startedClick()
         {
-            Debug.Log("started click");
+            // Debug.Log("started click");
             setCursor(cursorPressed);
         }
 
         private void performedClick()
         {
-            Debug.Log("performed click");
+            // Debug.Log("performed click");
             setCursor(cursor); // go back to normal cursor after click finished
-            //pass the mouse position in the Aim action
-            SelectionManager.Instance.ClickAction(_cursorControl.Mouse.Aim.ReadValue<Vector2>());
+            //tell the get the clicked object and pass it to the game manager to deal with the object
+            GameManager.Instance.objectClickAction(SelectionManager.Instance.selectedObject);
         }
+
+        private void startedAim()
+        {
+            
+        }
+
+        private void performedAim()
+        {
+            //pass the mouse position in the Aim action for the selection manager to highlight objects
+            SelectionManager.Instance.AimAction(_cursorControl.Mouse.Aim.ReadValue<Vector2>());
+        }
+
         public void setCursor(Texture2D cursor)
         {
             //if the hotspot is in the centre, i.e. a crosshair cursor, then use this
@@ -54,7 +70,7 @@ namespace Inner_Miner.Scripts
             //auto means auto hardware accelleration
             Cursor.SetCursor(cursor, hotSpot, CursorMode.Auto);
             Cursor.lockState = CursorLockMode.Confined;
-            Debug.Log("cursor set");
+            // Debug.Log("cursor set");
         }
 
         // Update is called once per frame

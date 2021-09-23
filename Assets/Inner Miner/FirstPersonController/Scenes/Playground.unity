@@ -723,6 +723,7 @@ GameObject:
   - component: {fileID: 947588893}
   - component: {fileID: 947588892}
   - component: {fileID: 947588894}
+  - component: {fileID: 947588895}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -772,6 +773,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectableTag: Selectable
   highlightMaterial: {fileID: 2100000, guid: 57506ad3972b569438e3816b7e686e59, type: 2}
+--- !u!114 &947588895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 947588891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cf3af81e0a94a63a19b47d0339f4359, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1028513131
 GameObject:
   m_ObjectHideFlags: 0
