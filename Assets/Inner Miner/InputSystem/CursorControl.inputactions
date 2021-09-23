@@ -1,0 +1,52 @@
+{
+    "name": "MouseControl",
+    "maps": [
+        {
+            "name": "Mouse",
+            "id": "4d9cf525-cce8-4f8c-b939-db05e80f6ff3",
+            "actions": [
+                {
+                    "name": "Aim",
+                    "type": "Value",
+                    "id": "b4b5c619-3458-469f-84cf-526e8e11cb6a",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Click",
+                    "type": "Button",
+                    "id": "9a0bd214-399c-419a-a396-3b11c0697ae1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "3743aa27-cb15-4c1c-865d-8b1e7e3b8d7a",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5a745aa1-f888-4121-af73-6ec575fe8825",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "Press(behavior=1)",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
