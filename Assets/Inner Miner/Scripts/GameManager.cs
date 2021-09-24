@@ -12,10 +12,15 @@ namespace Inner_Miner.Scripts
         /// decides what to do with the clicked object, is it a cube? a shop? another player?
         /// </summary>
         /// <param name="gameObject"></param>
-        public void objectClickAction(GameObject gameObject)
+        public void objectClickAction(GameObject clickedObj)
         {
             //if object is a digable block
-            Debug.Log($"game manager received the object {gameObject.name}");
+            
+            Debug.Log($"game manager received the object {clickedObj.name}");
+            if (clickedObj.CompareTag("Block"))
+            {
+                Debug.Log($"hp left {clickedObj.GetComponent<Block>().dig(1)}");
+            }
         }
     }
 }

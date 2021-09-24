@@ -10,7 +10,7 @@ namespace StarterAssets
 		[Header("Character Input Values")]
 		public Vector2 move;
 		public Vector2 look;
-		public bool lookModifier;
+		//public bool lookModifier;
 		public bool jump;
 		public bool sprint;
 
@@ -19,8 +19,8 @@ namespace StarterAssets
 
 #if !UNITY_IOS || !UNITY_ANDROID
 		[Header("Mouse Cursor Settings")]
-		public bool cursorLocked = true;
-		public bool cursorInputForLook = true;
+		public bool cursorLocked = false;
+		public bool cursorInputForLook = false;
 
 #endif
 
@@ -72,7 +72,7 @@ namespace StarterAssets
 		//begin: teddy add
 		public void LookModifierInput(bool newModifierState)
 		{
-			lookModifier = newModifierState;
+			cursorInputForLook = newModifierState;
 		}
 		//end: teddy add
 		public void JumpInput(bool newJumpState)
@@ -94,7 +94,7 @@ namespace StarterAssets
 
 		private void SetCursorState(bool newState)
 		{
-			Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
+			Cursor.lockState = newState ? CursorLockMode.Confined : CursorLockMode.None;
 		}
 
 #endif

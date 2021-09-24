@@ -119,7 +119,7 @@ namespace StarterAssets
 		{
 			// if there is an input
 			// teddy: and modifier is held down. create the modifier as a new inputaction, value:any, mouse right button for hold 
-			if (_input.look.sqrMagnitude >= _threshold && _input.lookModifier)
+			if (_input.look.sqrMagnitude >= _threshold && _input.cursorInputForLook)
 			{
 				_cinemachineTargetPitch += _input.look.y * RotationSpeed * Time.deltaTime;
 				_rotationVelocity = _input.look.x * RotationSpeed * Time.deltaTime;

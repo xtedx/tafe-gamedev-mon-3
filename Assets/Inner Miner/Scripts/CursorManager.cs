@@ -69,7 +69,7 @@ namespace Inner_Miner.Scripts
             var hotSpot = Vector2.zero; //use top left corner
             //auto means auto hardware accelleration
             Cursor.SetCursor(cursor, hotSpot, CursorMode.Auto);
-            Cursor.lockState = CursorLockMode.Confined;
+            //Cursor.lockState = CursorLockMode.Confined;
             // Debug.Log("cursor set");
         }
 

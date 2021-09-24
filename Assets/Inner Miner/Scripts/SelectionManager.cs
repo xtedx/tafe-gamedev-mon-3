@@ -8,7 +8,7 @@ namespace Inner_Miner.Scripts
     /// </summary>
     public class SelectionManager : MonoSingleton<SelectionManager>
     {
-        [SerializeField] private string selectableTag = "Selectable";
+        [SerializeField] private string selectableTag = "Block";
         [SerializeField] private Material highlightMaterial;
 
         private Material _originalMaterial;
@@ -23,7 +23,7 @@ namespace Inner_Miner.Scripts
             //get the object clicked
             var pointedObject = getObjectOnMousePosition(pos);
             //ignore if new object same as currently selected object or nothing pointed
-            if ((selectedObject == pointedObject) || pointedObject == null) return;
+            if ((selectedObject == pointedObject) || pointedObject == null || !pointedObject.CompareTag(selectableTag)) return;
 
             Debug.Log($"pointedObject.name {pointedObject.name}");
 
