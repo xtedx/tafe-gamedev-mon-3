@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using Inner_Miner.Scripts;
 using UnityEngine;
 
+/// <summary>
+/// represents a block in the game that can be destroyed
+/// </summary>
 public class Block : MonoBehaviour
 {
     public int hp;
@@ -33,11 +36,13 @@ public class Block : MonoBehaviour
         //blocks start from level 0, with baseHP
         //from level 0: 5, 10, 15, ....
         level = setLevel;
-        hp = baseHp + (hp * level);
+        hp = baseHp + (baseHp * level);
         //use mod 16 to make sure the colours get repeated and not out of bound
         material = MaterialList.Instance.Materials[level%16];
         GetComponent<Renderer>().material = material;
         gameObject.SetActive(true);
+
+        poof = MaterialList.Instance.poof;
     }
 
     /// <summary>
@@ -63,10 +68,12 @@ public class Block : MonoBehaviour
     /// </summary>
     public void vanish()
     {
+        poof.transform.position = transform.position;
+        poof.Stop();
         poof.Play();
         gameObject.SetActive(false);
     }
-    
+
     // Update is called once per frame
     void Update()
     {

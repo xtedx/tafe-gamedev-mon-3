@@ -9,5 +9,6 @@ namespace Inner_Miner.Scripts
     public class MaterialList : MonoSingleton<MaterialList>
     {
         public List<Material> Materials;
+        public ParticleSystem poof;
     }
 }
