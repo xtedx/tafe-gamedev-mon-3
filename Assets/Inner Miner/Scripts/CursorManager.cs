@@ -1,9 +1,12 @@
 using TeddyToolKit.Core;
-using UnityEditor;
 using UnityEngine;
 
-namespace Inner_Miner.Scripts
+namespace TeddyToolKit.PointClick.Managers
 {
+    /// <summary>
+    /// manages the mouse pointer cursor using the new input system
+    /// need to create in the assets folder right click:create:input actions
+    /// </summary>
     public class CursorManager : MonoSingleton<CursorManager>
     {
         private CursorControl _cursorControl;
@@ -69,7 +72,7 @@ namespace Inner_Miner.Scripts
             var hotSpot = Vector2.zero; //use top left corner
             //auto means auto hardware accelleration
             Cursor.SetCursor(cursor, hotSpot, CursorMode.Auto);
-            //Cursor.lockState = CursorLockMode.Confined;
+            Cursor.lockState = CursorLockMode.Confined;
             // Debug.Log("cursor set");
         }
 

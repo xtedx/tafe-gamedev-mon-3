@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/Inner Miner/InputSystem/CursorControl.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/TeddyToolKit/PointClick/InputHandler/CursorControl.inputactions'
 
 using System;
 using System.Collections;

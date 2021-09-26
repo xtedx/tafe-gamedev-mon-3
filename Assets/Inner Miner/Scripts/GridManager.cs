@@ -4,6 +4,7 @@ using System.Runtime.Serialization;
 using Cinemachine;
 using TeddyToolKit.Core;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Inner_Miner.Scripts
 {
@@ -14,10 +15,12 @@ namespace Inner_Miner.Scripts
     {
         public Dictionary<Vector3Int, Block> grid;
         public GameObject blockPrefab;
+        public GameObject treasurePrefab;
         public int maxX = 8;
         public int maxY = 16;
         public int maxZ = 8;
         public int maxLayer = 2;
+        public int treasurePerLevel = 1;
 
 
         private void Start()
@@ -53,6 +56,8 @@ namespace Inner_Miner.Scripts
             {
                 for (var layer = 0; layer < maxLayer; layer++)
                 { 
+                    //generate a random pos for a treasure at every layer
+                    var treasurePos = new Vector3(Mathf.Floor(Random.Range(0, 7)), -(y+layer), Mathf.Floor(Random.Range(0, 7)));
                     for (var x = 0; x < maxX; x++)
                     {
                         for (var z = 0; z < maxZ; z++)
@@ -67,13 +72,39 @@ namespace Inner_Miner.Scripts
                              * and use integer division of y to only add level every 2(maxlayers)
                              */
                             var pos = new Vector3Int(x, -(y+layer), z);
-                            var block = Instantiate(blockPrefab, pos, transform.rotation).GetComponent<Block>();
+                            Block block = null;
+                            //if this position is the randomised treasure pos, instead of the normal block
+                            if (pos == treasurePos)
+                            {
+                                //the chest model was designed as -90 somehow, so i need to rotate it here
+                                var xminus90rot = Quaternion.Euler(new Vector3(-90, 0, 0));
+                                block = Instantiate(treasurePrefab, pos, xminus90rot).GetComponent<Block>();
+                            }
+                            else
+                            {
+                                block = Instantiate(blockPrefab, pos, transform.rotation).GetComponent<Block>();
+                            }
                             var level = y / maxLayer;
                             block.init(level);
                             //Debug.Log($"pos {pos}:: layer {layer} y {y} level {level}");
                             grid.Add(pos, block);
                         }
                     }
+                }
+            }
+        }
+        
+        /// <summary>
+        /// restart the grid by reactivating all the cleared blocks
+        /// </summary>
+        public void restartGrid()
+        {
+            foreach (var pair in grid)
+            {
+                if (!pair.Value.gameObject.activeSelf)
+                {
+                    pair.Value.init(pair.Value.level);
+                    pair.Value.gameObject.SetActive(true);
                 }
             }
         }

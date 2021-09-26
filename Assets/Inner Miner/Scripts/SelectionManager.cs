@@ -1,14 +1,14 @@
 ﻿using TeddyToolKit.Core;
 using UnityEngine;
 
-namespace Inner_Miner.Scripts
+namespace TeddyToolKit.PointClick.Managers
 {
     /// <summary>
     /// Handles the Selection and Deselection of objects
     /// </summary>
     public class SelectionManager : MonoSingleton<SelectionManager>
     {
-        [SerializeField] private string selectableTag = "Block";
+        [SerializeField] private string selectableTag = "Selectable";
         [SerializeField] private Material highlightMaterial;
 
         private Material _originalMaterial;
@@ -23,7 +23,9 @@ namespace Inner_Miner.Scripts
             //get the object clicked
             var pointedObject = getObjectOnMousePosition(pos);
             //ignore if new object same as currently selected object or nothing pointed
-            if ((selectedObject == pointedObject) || pointedObject == null || !pointedObject.CompareTag(selectableTag)) return;
+            if ((selectedObject == pointedObject)
+                || (pointedObject == null)
+                || !pointedObject.CompareTag(selectableTag)) return;
 
             Debug.Log($"pointedObject.name {pointedObject.name}");
 
