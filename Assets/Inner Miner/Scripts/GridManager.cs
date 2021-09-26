@@ -79,6 +79,7 @@ namespace Inner_Miner.Scripts
                                 //the chest model was designed as -90 somehow, so i need to rotate it here
                                 var xminus90rot = Quaternion.Euler(new Vector3(-90, 0, 0));
                                 block = Instantiate(treasurePrefab, pos, xminus90rot).GetComponent<Block>();
+                                block.isTreasure = true;
                             }
                             else
                             {

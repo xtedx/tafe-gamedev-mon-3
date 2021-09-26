@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Inner_Miner.Scripts;
+using TeddyToolKit.Test.PointClick;
 using UnityEngine;
+using GameManager = Inner_Miner.Scripts.GameManager;
 
 /// <summary>
 /// represents a block in the game that can be destroyed
@@ -57,19 +59,25 @@ public class Block : MonoBehaviour
     /// <summary>
     ///dig the block and reduce the hp by 1
     /// </summary>
+    /// <returns>the remaining hp</returns>
     public int dig(int power)
     {
+        var score = 0;
         if (hp > power)
         {
             hp -= power;
+            score = power;
         }
         else
         {
+            //add the remaining hp and treasure as the score; 
+            score = hp + treasureValue;
             hp = 0;
             vanish();
         }
 
-        return hp+treasureValue;
+        GameManager.Instance.addScore(score);
+        return hp;
     }
 
     /// <summary>
@@ -81,6 +89,8 @@ public class Block : MonoBehaviour
         poof.Stop();
         poof.Play();
         gameObject.SetActive(false);
+        //must remove selection after destroyed to avoid score bug
+        SelectionManager.Instance.selectedObject = null;
     }
 
     // Update is called once per frame

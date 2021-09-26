@@ -1,9 +1,12 @@
 ﻿using System;
 using Inner_Miner.Scripts;
 using TeddyToolKit.Core;
+using TeddyToolKit.UI;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
-namespace TeddyToolKit.PointClick.Managers
+namespace Inner_Miner.Scripts
 {
     /// <summary>
     /// the brain of the game, controls most aspects like score keeping, and game logic
@@ -14,6 +17,8 @@ namespace TeddyToolKit.PointClick.Managers
         public int score;
         private Vector3 playerStartPos = Vector3.zero;
 
+        public TMP_Text txtScore;
+        
         private void Start()
         {
             init();
@@ -23,6 +28,7 @@ namespace TeddyToolKit.PointClick.Managers
         {
             playerStartPos = new Vector3(-2, 1, 1.4f);
             score = 0;
+            //UiManager.Instance.CloseAllMenus();
         }
         
         /// <summary>
@@ -40,6 +46,9 @@ namespace TeddyToolKit.PointClick.Managers
             }
         }
 
+        /// <summary>
+        /// reset everything and start a new game
+        /// </summary>
         public void newGame()
         {
             Debug.Log("TODO: new game menu click");
@@ -49,6 +58,17 @@ namespace TeddyToolKit.PointClick.Managers
             score = 0;
             
             GridManager.Instance.restartGrid();
+            UiManager.Instance.CloseAllMenus();
+        }
+
+        /// <summary>
+        /// add score
+        /// </summary>
+        /// <param name="value"></param>
+        public void addScore(int value)
+        {
+            score += value;
+            txtScore.text = score.ToString();
         }
     }
 }

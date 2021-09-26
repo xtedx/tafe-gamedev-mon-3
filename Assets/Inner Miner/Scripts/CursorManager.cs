@@ -1,7 +1,7 @@
 using TeddyToolKit.Core;
 using UnityEngine;
 
-namespace TeddyToolKit.PointClick.Managers
+namespace Inner_Miner.Scripts
 {
     /// <summary>
     /// manages the mouse pointer cursor using the new input system

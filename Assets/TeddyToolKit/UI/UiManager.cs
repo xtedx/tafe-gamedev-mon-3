@@ -13,7 +13,9 @@ namespace TeddyToolKit.UI
         /// </summary>
         [SerializeField] 
         [Tooltip("Drag the Menu GUI GameObject here for the UIManager to manage")]
-        private GameObject menuGUI;
+        public GameObject menuGUI;
+        public GameObject settingGUI;
+        public GameObject introGUI;
         
         /// <summary>
         /// toggles the display of menu
@@ -22,6 +24,13 @@ namespace TeddyToolKit.UI
         {
             var current = gameObject.activeSelf;
             gameObject.SetActive(!current);
+        }
+
+        public void CloseAllMenus()
+        {
+            menuGUI.SetActive(false);
+            settingGUI.SetActive(false);
+            introGUI.SetActive(false);
         }
         
         /// <summary>

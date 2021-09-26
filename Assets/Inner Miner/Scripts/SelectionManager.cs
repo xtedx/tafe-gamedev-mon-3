@@ -1,7 +1,7 @@
 ﻿using TeddyToolKit.Core;
 using UnityEngine;
 
-namespace TeddyToolKit.PointClick.Managers
+namespace Inner_Miner.Scripts
 {
     /// <summary>
     /// Handles the Selection and Deselection of objects
@@ -12,7 +12,7 @@ namespace TeddyToolKit.PointClick.Managers
         [SerializeField] private Material highlightMaterial;
 
         private Material _originalMaterial;
-        public GameObject selectedObject { get; private set; }
+        public GameObject selectedObject;
 
         /// <summary>
         /// highlights the object on the mouse cursor, and remove 
