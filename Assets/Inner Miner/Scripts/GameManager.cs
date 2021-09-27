@@ -9,7 +9,7 @@ using UnityEngine.UI;
 namespace Inner_Miner.Scripts
 {
     /// <summary>
-    /// the brain of the game, controls most aspects like score keeping, and game logic
+    /// the brain of the game, controls overall aspects like score keeping, and game logic
     /// </summary>
     public class GameManager : MonoSingleton<GameManager>
     {
@@ -18,6 +18,7 @@ namespace Inner_Miner.Scripts
         private Vector3 playerStartPos = Vector3.zero;
 
         public TMP_Text txtScore;
+        public TMP_Text txtHP;
         
         private void Start()
         {
@@ -42,7 +43,10 @@ namespace Inner_Miner.Scripts
             Debug.Log($"game manager received the object {clickedObj.name}");
             if (clickedObj.CompareTag("Block"))
             {
-                Debug.Log($"hp left {clickedObj.GetComponent<Block>().dig(1)}");
+                var block = clickedObj.GetComponent<Block>();
+                var hpLeft = block.dig(1);
+                Debug.Log($"hp left {hpLeft}");
+                txtHP.text = hpLeft.ToString();
             }
         }
 

@@ -7,7 +7,7 @@ using UnityEngine;
 using GameManager = Inner_Miner.Scripts.GameManager;
 
 /// <summary>
-/// represents a block in the game that can be destroyed
+/// Represents a block in the game that can be destroyed
 /// </summary>
 public class Block : MonoBehaviour
 {

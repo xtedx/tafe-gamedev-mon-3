@@ -9,7 +9,7 @@ using Random = UnityEngine.Random;
 namespace Inner_Miner.Scripts
 {
     /// <summary>
-    /// manages the grid and the blocks
+    /// manages the creation of grid and the blocks
     /// </summary>
     public class GridManager : MonoSingleton<GridManager>
     {

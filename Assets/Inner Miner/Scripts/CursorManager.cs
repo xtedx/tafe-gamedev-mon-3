@@ -4,6 +4,8 @@ using UnityEngine;
 namespace Inner_Miner.Scripts
 {
     /// <summary>
+    /// Listens to the Input System Auto Generated classes from the Unity’s new input control system and
+    /// run the appropriate methods for mouse click and aim.
     /// manages the mouse pointer cursor using the new input system
     /// need to create in the assets folder right click:create:input actions
     /// </summary>
